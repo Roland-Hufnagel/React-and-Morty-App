@@ -1,5 +1,5 @@
 import './App.css';
-import { styled } from './styledComponents';
+import { styled } from '.';
 
 function App() {
   return (
