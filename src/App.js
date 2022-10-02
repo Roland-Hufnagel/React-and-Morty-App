@@ -5,6 +5,8 @@ import Card from './components/Card/Card';
 import Footer from './components/Footer/Footer';
 import CardContainer from './components/CardContainer/CardContainer';
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import DetailCard from './components/DetailCard/DetailCard';
 
 function App() {
   const API = 'https://rickandmortyapi.com/api/character';
@@ -15,7 +17,7 @@ function App() {
       const response = await fetch(API);
       const result = await response.json();
       setCards(result.results);
-      //console.log(cards);
+      console.log(cards);
     } catch (error) {
       console.error(error.message);
     }
@@ -28,7 +30,15 @@ function App() {
   return (
     <AppContainer>
       <Header />
-      <CardContainer cards={cards} />
+      {/* <CardContainer cards={cards} /> */}
+      <Routes>
+        <Route path="/" element={<CardContainer cards={cards} />} />
+        <Route path="/details/:id" element={<DetailCard cards={cards}/>}/>
+          
+       
+        <Route path="/random" element={<CardContainer cards={cards} />} />
+        <Route path="/favourites" element={<CardContainer cards={cards} />} />
+      </Routes>
       <Footer />
     </AppContainer>
   );
