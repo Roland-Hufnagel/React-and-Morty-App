@@ -16,7 +16,10 @@ function App() {
     try {
       const response = await fetch(API);
       const result = await response.json();
-      setCards(result.results);
+      const newArrayWithBookmark = result.results.map((data) => {
+        return { ...data, id: data.id.toString(), bookmarked: false };
+      });
+      setCards(newArrayWithBookmark);
       console.log(cards);
     } catch (error) {
       console.error(error.message);
@@ -27,15 +30,23 @@ function App() {
     fetchCharacters();
   }, []);
 
+  function toggleBookmark(id) {
+    console.log('toggle', id);
+    setCards(
+      cards.map((card) => {
+        return card.id === id ? { ...card, bookmarked: !card.bookmarked } : { ...card };
+      })
+    );
+  }
+
   return (
     <AppContainer>
       <Header />
       {/* <CardContainer cards={cards} /> */}
       <Routes>
         <Route path="/" element={<CardContainer cards={cards} />} />
-        <Route path="/details/:id" element={<DetailCard cards={cards}/>}/>
-          
-       
+        <Route path="/details/:id" element={<DetailCard cards={cards} onBookmark={toggleBookmark} />} />
+
         <Route path="/random" element={<CardContainer cards={cards} />} />
         <Route path="/favourites" element={<CardContainer cards={cards} />} />
       </Routes>
