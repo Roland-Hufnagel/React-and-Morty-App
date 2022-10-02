@@ -7,7 +7,7 @@ export default function CardContainer({cards}) {
   return (
     <StyledCardContainer>
       {cards.map((card) => {
-        return <Card key={card.id} name={card.name} img={card.image} />;
+        return <Card key={card.id} card={card} />;
       })}
     </StyledCardContainer>
   );
@@ -15,6 +15,9 @@ export default function CardContainer({cards}) {
 
 const StyledCardContainer = styled.ul`
   all: unset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin: 0 auto;
   overflow: auto;
   width: 100%;
