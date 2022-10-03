@@ -58,27 +58,21 @@ function App() {
   return (
     <AppContainer>
       <Header />
-      <main className="main">
-        <Routes>
-          <Route path="/" element={<CardContainer cards={cards} page="home" />} />
-          <Route path="/details/:id" element={<DetailCard cards={cards} onBookmark={toggleBookmark} />} />
-          <Route path="/random" element={<CardContainer cards={cards} />} />
-          <Route path="/favorites" element={<CardContainer cards={cards.filter((card) => card.bookmarked)} />} />
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<CardContainer cards={cards} />} />
+        <Route path="/details/:id" element={<DetailCard cards={cards} onBookmark={toggleBookmark} />} />
+        <Route path="/random" element={<CardContainer cards={cards} />} />
+        <Route path="/favourites" element={<CardContainer cards={cards} />} />
+      </Routes>
       <Footer />
     </AppContainer>
   );
 }
-// const StyledMain = styled.main`
-//   overflow: auto;
-// `;
+
 const AppContainer = styled.div`
-  background-color: blue;
   display: grid;
-  grid-template-rows: 760px 1fr 100px;
+  grid-template-rows: 60px 1fr 60px;
   height: 100vh;
-  align-content: space-between;
-  align-items: start;
+  position: relative;
 `;
 export default App;

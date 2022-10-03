@@ -1,19 +1,17 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export default function Card({ card, page }) {
-  console.log('____', page);
+export default function Card({ card }) {
   return (
     <StyledCard>
-      <p style={{ diplay: page === 'home' ? 'none' : 'block' }}>Hallo</p>
       <img src={card.image} alt={card.name} />
       <p>{card.name}</p>
-      <StyledLink to={`/details/${card.id}`}>Show More</StyledLink>
+     <StyledLink to={`/details/${card.id}`} >Show More</StyledLink>
     </StyledCard>
   );
 }
 const StyledCard = styled.li`
-  background-color: #fffdd0;
+background-color: #fffdd0;
   margin: 10px auto;
   list-style: none;
   width: 250px;
@@ -40,4 +38,4 @@ const StyledLink = styled(Link)`
 
   text-align: center;
   margin: 10px auto;
-`;
+  `;

@@ -10,7 +10,6 @@ export default function DetailCard({ cards, onBookmark }) {
     setShowDetails((prev) => !prev);
   }
   console.log('Karte:', id, cards);
-  console.log('Param:', id);
   return cards
     .filter((card) => card.id === id)
     .map((card, index) => (
@@ -19,7 +18,7 @@ export default function DetailCard({ cards, onBookmark }) {
           onClick={() => {
             onBookmark(id);
           }}
-          style={{ backgroundColor: `${card.bookmarked ? 'red' : 'white'}` }}
+          style={{ backgroundColor: `${card.bookmarked ? 'green' : 'white'}` }}
         >
           B
         </FavButton>
@@ -76,7 +75,7 @@ const StyledCard = styled.section`
   background-color: #fffdd0;
   margin: 40px auto;
   list-style: none;
-  width: 250px;
+  width: 400px;
   border: 2px solid black;
   border-radius: 0.2em;
   text-align: center;
