@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function DetailCard({ cards }) {
+export default function DetailCard({ cards, onBookmark }) {
   const { id } = useParams();
   const [showDetails, setShowDetails] = useState(true);
 
@@ -11,9 +11,17 @@ export default function DetailCard({ cards }) {
   }
   console.log('Karte:', id, cards);
   return cards
-    .filter((card) => card.id.toString() === id)
+    .filter((card) => card.id === id)
     .map((card, index) => (
       <StyledCard key={index}>
+        <FavButton
+          onClick={() => {
+            onBookmark(id);
+          }}
+          style={{ backgroundColor: `${card.bookmarked ? 'green' : 'white'}` }}
+        >
+          B
+        </FavButton>
         <img src={card.image} alt={card.name} />
         <h2>{card.name}</h2>
         {showDetails && (
@@ -49,30 +57,21 @@ export default function DetailCard({ cards }) {
         <button onClick={toggleDetails}>{showDetails ? 'Show less' : 'Show more'}</button>
       </StyledCard>
     ));
-
-  // {
-  //     cards
-  //     .filter((card)=>card.id===id)
-  //     .map((card, index)=>
-  //         (
-  //             <StyledCard>
-  //                 <img src={card.img} alt={card.name} />
-  //                 <p>{card.name}</p>
-  //                 <p>{card.status}</p>
-  //             </StyledCard>
-  //         )
-  //     )
-
-  // }
-
-  // <StyledCard>
-  //   <img src={card.image} alt={card.name} />
-
-  //   <p>{card.name}</p>
-  //   <button>Show More</button>
-  // </StyledCard>
 }
+const FavButton = styled.button`
+  all: unset;
+  position: absolute;
+  top: -40px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid red;
+  background-color: white;
+  cursor: pointer;
+`;
 const StyledCard = styled.section`
+  position: relative;
   background-color: #fffdd0;
   margin: 40px auto;
   list-style: none;
