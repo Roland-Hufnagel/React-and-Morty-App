@@ -1,9 +1,14 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export default function Footer() {
   return (
     <StyledFooter>
       <StyledNav>
+        <NavLink to="/random">Random</NavLink>
+        <NavLink to="/favorites">Favorites</NavLink>
+        <NavLink to="/creative">Get Creative</NavLink>
+        <NavLink to="/">Home</NavLink>
         <Bulletpoint />
         <Bulletpoint />
         <Bulletpoint />
@@ -14,8 +19,8 @@ export default function Footer() {
 }
 
 const StyledFooter = styled.footer`
-  //position: absolute;
-  //bottom: 0;
+  /* position: fixed;
+  bottom: 0; */
   width: 100%;
   background-color: pink;
   display: flex;
