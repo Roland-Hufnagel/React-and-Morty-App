@@ -14,7 +14,14 @@ export default function DetailCard({ cards, onBookmark }) {
     .filter((card) => card.id === id)
     .map((card, index) => (
       <StyledCard key={index}>
-        <FavButton onClick={()=>{onBookmark(id)}} style={{backgroundColor: `${card.bookmarked?"red":"white"}`}} />
+        <FavButton
+          onClick={() => {
+            onBookmark(id);
+          }}
+          style={{ backgroundColor: `${card.bookmarked ? 'green' : 'white'}` }}
+        >
+          B
+        </FavButton>
         <img src={card.image} alt={card.name} />
         <h2>{card.name}</h2>
         {showDetails && (
