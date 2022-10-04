@@ -1,14 +1,13 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export default function Footer() {
   return (
     <StyledFooter>
-      <StyledNav>
-        <Bulletpoint />
-        <Bulletpoint />
-        <Bulletpoint />
-        <Bulletpoint />
-      </StyledNav>
+      <MyLink to="/" end>Home</MyLink>
+      <MyLink to="/favorites">Favorites</MyLink>
+      <MyLink to="/random">Random</MyLink>
+      <MyLink to="/creative">Get Creative</MyLink>
     </StyledFooter>
   );
 }
@@ -21,7 +20,14 @@ const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
 `;
-
+const MyLink = styled(NavLink)`
+all: unset;
+cursor: pointer;
+padding: 20px;
+&.active{
+  background-color: white;
+}
+`;
 const StyledNav = styled.nav``;
 
 const Bulletpoint = styled.div`
