@@ -2,6 +2,8 @@ import './App.css';
 import styled from 'styled-components';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Main from './components/Main/Main';
+import Card from './components/Card/Card';
 import CardContainer from './components/CardContainer/CardContainer';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
@@ -58,12 +60,18 @@ function App() {
   return (
     <AppContainer>
       <Header />
-      <Routes>
-        <Route path="/" element={<CardContainer cards={cards} />} />
-        <Route path="/details/:id" element={<DetailCard cards={cards} onBookmark={toggleBookmark} />} />
-        <Route path="/random" element={<CardContainer cards={cards} />} />
-        <Route path="/favourites" element={<CardContainer cards={cards} />} />
-      </Routes>
+      {/* <Main> */}
+        <Routes>
+          <Route path="/" element={<CardContainer cards={cards} site="home" />} />
+          {/* <Route path="/" element={<div>{cards.map((card)=>{
+            return <Card key={card.id} card={card}/>
+          })}</div>}   /> */}
+          {/* <Route path="/details/:id" element={<DetailCard cards={cards} onBookmark={toggleBookmark} />} /> */}
+          <Route path="/details/:id" element={<CardContainer cards={cards} onBookmark={toggleBookmark} />} />
+          <Route path="/random" element={<CardContainer cards={cards} />} />
+          <Route path="/favourites" element={<CardContainer cards={cards} />} />
+        </Routes>
+      {/* </Main> */}
       <Footer />
     </AppContainer>
   );
